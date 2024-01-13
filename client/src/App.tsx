@@ -5,16 +5,18 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import GrowthStunters from "./components/growth-stunters";
 import FaceDetector from "./components/FaceDetector";
+import WateringSchedule from "./components/growth-stunters/watering-schedule";
 
 const App: React.FC = () => {
   return (
     <>
       <Header />
-      <FaceDetector />
-      <GrowthStunters />
+      {/* <FaceDetector /> */}
+
+      {/* <GrowthStunters /> */}
+      <WateringSchedule />
       <Footer />
-      <Webcam width={150} />
-      <Footer/>
+      {/* <Webcam width={150} /> */}
     </>
   );
 };
