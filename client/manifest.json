@@ -3,7 +3,13 @@
   "manifest_version": 3,
   "name": "Don't leaf me",
   "description": "A computer vision, tab restricting tool; to streamline your productivity.",
+  "icons": {
+    "16": "images/plant.png",
+    "48": "images/plant.png",
+    "128": "images/plant.png"
+  },
   "action": {
+    "default_icon": "images/plant.png",
     "default_popup": "js/index.html",
     "default_title": "Don't leaf me"
   }
