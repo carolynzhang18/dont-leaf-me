@@ -19,7 +19,7 @@
   "include": [
     "src",
     "camera.js",
-    "src/components/Footer.tsx",
+    "src/components/footer.tsx",
     "src/components/Header.tsx"
   ]
 }
