@@ -3,12 +3,7 @@ import "./App.css";
 import styled from "styled-components";
 
 const App: React.FC = () => {
-  return <AppContainer className="App">Hello World</AppContainer>;
+  return <>Hello World</>;
 };
-
-const AppContainer = styled.div`
-  color: white;
-  text-align: center;
-`;
 
 export default App;
