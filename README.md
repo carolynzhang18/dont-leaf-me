@@ -1,3 +1,3 @@
 Don't leaf me 🍃
 
-A computer vision, tab restricting tool, to streamline your productivity.
+A computer vision, tab restricting tool; to streamline your productivity.
