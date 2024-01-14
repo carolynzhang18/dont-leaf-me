@@ -120,7 +120,7 @@ const GrowthContainer = styled.div`
   position: absolute;
   top: 20%;
   width: 300px;
-  overflow: scroll;
+  overflow-y: auto;
   max-height: 286px;
 
   display: flex;

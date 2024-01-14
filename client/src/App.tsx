@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Webcam from "react-webcam";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import FaceDetector from "./components/FaceDetector";
 import GrowthStunters from "./components/growth-stunters";
 import WateringSchedule from "./components/watering-schedule";
 
 const App: React.FC = () => {
+  const [includeFaceDetector, setIncludeFaceDetector] = useState(true);
+  setTimeout(() => setIncludeFaceDetector(false), 30000);
+
   return (
     <MemoryRouter>
       <Header />
@@ -16,26 +19,9 @@ const App: React.FC = () => {
         <Route path="/timer" element={<WateringSchedule />} />
       </Routes>
       <Footer />
+      {includeFaceDetector && <FaceDetector />}
     </MemoryRouter>
   );
 };
 
 export default App;
-
-{
-  /* <Header /> */
-}
-{
-  /* <FaceDetector /> */
-}
-
-{
-  /* <GrowthStunters /> */
-}
-{
-  /* <WateringSchedule />
-      <Footer /> */
-}
-{
-  /* <Webcam width={150} /> */
-}
