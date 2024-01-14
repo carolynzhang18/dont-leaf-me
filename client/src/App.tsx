@@ -9,7 +9,7 @@ import WateringSchedule from "./components/watering-schedule";
 
 const App: React.FC = () => {
   const [includeFaceDetector, setIncludeFaceDetector] = useState(true);
-  setTimeout(() => setIncludeFaceDetector(false), 30000);
+  setTimeout(() => setIncludeFaceDetector(false), 120000);
 
   return (
     <MemoryRouter>
@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Route path="/timer" element={<WateringSchedule />} />
       </Routes>
       <Footer />
-      {/* {includeFaceDetector && <FaceDetector />} */}
+      {includeFaceDetector && <FaceDetector />}
     </MemoryRouter>
   );
 };
