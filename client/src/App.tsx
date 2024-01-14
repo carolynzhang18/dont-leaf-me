@@ -8,7 +8,9 @@ import HomePage from "./pages/HomePage";
 import TimerPage from "./pages/TimerPage";
 import GrowthStunters from "./components/growth-stunters";
 import FaceDetector from "./components/FaceDetector";
+import WateringSchedule from "./components/growth-stunters/watering-schedule";
 
+const webcam = false;
 
 const App: React.FC = () => {
   return (
