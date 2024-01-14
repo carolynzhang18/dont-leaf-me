@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import plantLogo from "../../../public/images/plant.png";
+import waterCanLogo from "../../../public/images/waterCan.png";
+
 
 const WateringSchedule: React.FC = () => {
   const [workTime, setWorkTime] = useState(25); // in minutes
   const [working, setWorking] = useState(true); // true if working
   const [counting, setCounting] = useState(false); // true if in countdown
+  const [showTimer, setShowTimer] = useState(true); // true if in timer is being shown
+  
+
+  const toggleShowTimer = () => {
+    setShowTimer(!showTimer);
+  };
 
   const startTimer = () => {
     if (counting) {
@@ -53,10 +62,31 @@ const WateringSchedule: React.FC = () => {
     <WateringContainer>
       <WateringTitle>Watering Schedule</WateringTitle>
       <TimerContainer>
-        <div>
-          {<TimerNumber>{workTime}</TimerNumber>}
-          <TimerWords>minutes left</TimerWords>
-        </div>
+        <TopRight onClick={toggleShowTimer}>
+          {(() => {
+            if (showTimer && working) {
+              return <img src={plantLogo} alt="Leaf logo" style={{ width: '75%', height: '75%' }} />;
+            } else if (showTimer && !working) {
+              return <img src={waterCanLogo} alt="Leaf logo" style={{ width: '75%', height: '75%' }} />;
+            } else {
+              return <TimerWordsSmall>{workTime}</TimerWordsSmall>
+            }
+          })()}
+        </TopRight>
+          {(() => {
+            if (!showTimer && working) {
+              return <img src={plantLogo} alt="Leaf logo" style={{ width: '34%', height: '34%' }} />;
+            } else if (!showTimer && !working) {
+              return <img src={waterCanLogo} alt="Leaf logo" style={{ width: '40%', height: '40%' }} />;
+            } else {
+              return (
+                <div>
+                  <TimerNumber>{workTime}</TimerNumber>
+                  <TimerWords>minutes left</TimerWords>
+                </div>
+              )
+            }
+          })()}
         <FlexButton>
         {counting ? (
           <StartButton onClick={startTimer}>Pause</StartButton>
@@ -107,8 +137,29 @@ const TimerContainer = styled.div`
   align-items: center;
   gap: 20px;
   box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
-
+  min-height: 222px;
   padding: 30px 0;
+`;
+
+const TopRight = styled.div`
+  border-radius: 5px;
+  background: #E3FFD2;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+
+  width: 40px;
+  height: 40px;
+  padding: 1px 2px 2px 2px;
+  margin: 4px;
+  position: absolute;
+  top: 60px;
+  right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
 `;
 
 const TimerNumber = styled.h1`
@@ -130,6 +181,18 @@ const TimerWords = styled.h2`
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
+  line-height: normal;
+
+  padding: 0;
+  margin: 0;
+`;
+
+const TimerWordsSmall = styled.h2`
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
   line-height: normal;
 
   padding: 0;
