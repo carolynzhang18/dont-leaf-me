@@ -5,7 +5,8 @@ const checkUrlAgainstLocalStorage = async (blockedSites, changeInfoUrl) => {
   if (changeInfoUrl != undefined) {
     for (let i = 0; i < blockedSites.length; i++) {
       if (changeInfoUrl.includes(blockedSites[i])) {
-        console.log("ALERT");
+        await console.log("ALERT");
+        await window.alert("ALERT");
         break;
       }
     }

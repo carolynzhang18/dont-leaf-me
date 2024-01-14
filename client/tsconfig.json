@@ -16,6 +16,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "compilerOptions": {
+    "lib": ["dom", "esnext", "node"]
+    // ... other compiler options
+  },  
   "include": [
     "src",
     "camera.js",

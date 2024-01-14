@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const WateringSchedule: React.FC = () => {
-  const [workTime, setWorkTime] = useState(25); // in minutes
-  const [working, setWorking] = useState(true); // true if working
-  const [counting, setCounting] = useState(false); // true if in countdown
+interface TimerProps{
+  workTime: number,
+  setWorkTime: React.Dispatch<React.SetStateAction<number>>;
+  working: boolean,
+  setWorking: React.Dispatch<React.SetStateAction<boolean>>;
+  counting: boolean,
+  setCounting: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const WateringSchedule: React.FC<TimerProps> = ({ workTime, setWorkTime, working, setWorking, counting, setCounting }) => {
+  
   const startTimer = () => {
     if (counting) {
       setCounting(false);
@@ -15,18 +21,41 @@ const WateringSchedule: React.FC = () => {
   };
 
   useEffect(() => {
-    if (counting) {
-      const timer = setInterval(() => {
-        setWorkTime(workTime - 1);
-        console.log(workTime);
-      }, 1000);
+    let timer = NodeJS.Timeout;
+    
+    const updateTimer = () => {
+      setWorkTime((prevTime: number) => prevTime - 1);
+      console.log(workTime);
+      
       if (workTime <= 0 || !counting) {
         clearInterval(timer);
         reset();
       }
-      return () => clearInterval(timer);
+    };
+  
+    if (counting) {
+      timer = setInterval(updateTimer, 1000);
+  
+      // Use the Page Visibility API to check if the page is hidden
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          clearInterval(timer);
+        } else {
+          timer = setInterval(updateTimer, 1000);
+        }
+      };
+  
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+      return () => {
+        clearInterval(timer);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
     }
+  
+    return () => clearInterval(timer);
   }, [workTime, counting]);
+  
 
   const reset = () => {
     // switching from working to break

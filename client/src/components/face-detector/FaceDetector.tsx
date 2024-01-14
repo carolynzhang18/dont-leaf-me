@@ -2,7 +2,6 @@ import React, { useRef, useState, useCallback } from 'react';
 import Webcam from "react-webcam";
 import axios from "axios";
 
-
 const FaceDetector = () => {
     const webcamRef = useRef(null);
     const [numFaces, setNumFaces] = useState(0);
