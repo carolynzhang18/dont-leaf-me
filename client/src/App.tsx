@@ -8,11 +8,13 @@ import GrowthStunters from "./components/growth-stunters";
 import FaceDetector from "./components/FaceDetector";
 import WateringSchedule from "./components/growth-stunters/watering-schedule";
 
+const webcam = false;
+
 const App: React.FC = () => {
   return (
     <>
       <Header />
-      {/* <FaceDetector /> */}
+      {webcam && <FaceDetector />}
 
       <GrowthStunters />
       <WateringSchedule />
