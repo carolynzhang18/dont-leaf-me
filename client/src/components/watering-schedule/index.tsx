@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import plantLogo from "../../../public/images/plant.png";
 import waterCanLogo from "../../../public/images/waterCan.png";
-
 
 const WateringSchedule: React.FC = () => {
   const [workTime, setWorkTime] = useState(25); // in minutes
   const [working, setWorking] = useState(true); // true if working
   const [counting, setCounting] = useState(false); // true if in countdown
   const [showTimer, setShowTimer] = useState(true); // true if in timer is being shown
-  
 
   const toggleShowTimer = () => {
     setShowTimer(!showTimer);
@@ -65,28 +63,52 @@ const WateringSchedule: React.FC = () => {
         <TopRight onClick={toggleShowTimer}>
           {(() => {
             if (showTimer && working) {
-              return <img src={plantLogo} alt="Leaf logo" style={{ width: '75%', height: '75%' }} />;
+              return (
+                <PlantImg
+                  src={plantLogo}
+                  alt="Leaf logo"
+                  style={{ width: "75%", height: "75%" }}
+                />
+              );
             } else if (showTimer && !working) {
-              return <img src={waterCanLogo} alt="Leaf logo" style={{ width: '75%', height: '75%' }} />;
+              return (
+                <PlantImg
+                  src={waterCanLogo}
+                  alt="Leaf logo"
+                  style={{ width: "75%", height: "75%" }}
+                />
+              );
             } else {
-              return <TimerWordsSmall>{workTime}</TimerWordsSmall>
+              return <TimerWordsSmall>{workTime}</TimerWordsSmall>;
             }
           })()}
         </TopRight>
-          {(() => {
-            if (!showTimer && working) {
-              return <img src={plantLogo} alt="Leaf logo" style={{ width: '34%', height: '34%' }} />;
-            } else if (!showTimer && !working) {
-              return <img src={waterCanLogo} alt="Leaf logo" style={{ width: '40%', height: '40%' }} />;
-            } else {
-              return (
-                <div>
-                  <TimerNumber>{workTime}</TimerNumber>
-                  <TimerWords>minutes left</TimerWords>
-                </div>
-              )
-            }
-          })()}
+        {(() => {
+          if (!showTimer && working) {
+            return (
+              <PlantImg
+                src={plantLogo}
+                alt="Leaf logo"
+                style={{ width: "34%", height: "34%" }}
+              />
+            );
+          } else if (!showTimer && !working) {
+            return (
+              <PlantImg
+                src={waterCanLogo}
+                alt="Leaf logo"
+                style={{ width: "40%", height: "40%" }}
+              />
+            );
+          } else {
+            return (
+              <div>
+                <TimerNumber>{workTime}</TimerNumber>
+                <TimerWords>minutes left</TimerWords>
+              </div>
+            );
+          }
+        })()}
         <FlexButton>
           {counting ? (
             <StartButton onClick={startTimer}>Pause</StartButton>
@@ -109,6 +131,28 @@ const WateringSchedule: React.FC = () => {
     </WateringContainer>
   );
 };
+
+const rotateAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+`;
+
+const PlantImg = styled.img`
+  animation: ${rotateAnimation} 1s linear infinite;
+`;
 
 const WateringContainer = styled.div`
   position: absolute;
@@ -143,7 +187,7 @@ const TimerContainer = styled.div`
 
 const TopRight = styled.div`
   border-radius: 5px;
-  background: #E3FFD2;
+  background: #e3ffd2;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
   width: 40px;
