@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import plantLogo from "../../../public/images/plant.png";
-import waterCanLogo from "../../../public/images/waterCan.png";
+import waterCanLogo from "../../../public/images/can.png";
 
 const WateringSchedule: React.FC = () => {
   const [workTime, setWorkTime] = useState(25); // in minutes
@@ -72,11 +72,27 @@ const WateringSchedule: React.FC = () => {
               );
             } else if (showTimer && !working) {
               return (
-                <PlantImg
-                  src={waterCanLogo}
-                  alt="Leaf logo"
-                  style={{ width: "75%", height: "75%" }}
-                />
+                <div style={{ position: "relative" }}>
+                  <img
+                    src={plantLogo}
+                    alt="Plant logo"
+                    style={{
+                      width: "65%",
+                      height: "65%",
+                    }}
+                  />
+                  <PlantImg
+                    src={waterCanLogo}
+                    alt="Leaf logo"
+                    style={{
+                      width: "50%",
+                      height: "50%",
+                      position: "absolute",
+                      top: "-3px",
+                      right: "4px",
+                    }}
+                  />
+                </div>
               );
             } else {
               return <TimerWordsSmall>{workTime}</TimerWordsSmall>;
@@ -89,16 +105,32 @@ const WateringSchedule: React.FC = () => {
               <PlantImg
                 src={plantLogo}
                 alt="Leaf logo"
-                style={{ width: "34%", height: "34%" }}
+                style={{ width: "30%", height: "30%" }}
               />
             );
           } else if (!showTimer && !working) {
             return (
-              <PlantImg
-                src={waterCanLogo}
-                alt="Leaf logo"
-                style={{ width: "40%", height: "40%" }}
-              />
+              <div style={{ position: "relative" }}>
+                <img
+                  src={plantLogo}
+                  alt="Plant logo"
+                  style={{
+                    width: "50%",
+                    height: "50%",
+                  }}
+                />
+                <PlantImg
+                  src={waterCanLogo}
+                  alt="Leaf logo"
+                  style={{
+                    width: "57%",
+                    height: "57%",
+                    position: "absolute",
+                    top: 0,
+                    right: "10px",
+                  }}
+                />
+              </div>
             );
           } else {
             return (
@@ -182,6 +214,7 @@ const TimerContainer = styled.div`
   gap: 20px;
   box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
   min-height: 222px;
+  max-height: 222px;
   padding: 30px 0;
 `;
 
