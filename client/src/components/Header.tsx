@@ -19,8 +19,9 @@ const HeaderContainer = styled.div`
   justify-content: center;
   gap: 5px;
   position: absolute;
-  width: 95.5%;
+  width: 100%;
   top: 0;
+  left: 0;
 `;
 
 const LogoImg = styled.img`
