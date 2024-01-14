@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Route path="/timer" element={<WateringSchedule />} />
       </Routes>
       <Footer />
-      {/* {includeFaceDetector && <FaceDetector />} */}
+      {includeFaceDetector && <FaceDetector />}
     </MemoryRouter>
   );
 };
