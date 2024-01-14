@@ -12,7 +12,7 @@ const WateringSchedule: React.FC = () => {
     } else {
       setCounting(true);
     }
-  }
+  };
 
   useEffect(() => {
     if (counting) {
@@ -37,8 +37,17 @@ const WateringSchedule: React.FC = () => {
       setWorkTime(25);
       setWorking(true);
     }
+  };
+
+  const resetBack = () => {
+    // resetting the time it currently had
+    if (working) {
+      setWorkTime(25);
+    } else {
+      setWorkTime(5);
+    }
     setCounting(false);
-  }
+  };
 
   return (
     <WateringContainer>
@@ -48,8 +57,22 @@ const WateringSchedule: React.FC = () => {
           {<TimerNumber>{workTime}</TimerNumber>}
           <TimerWords>minutes left</TimerWords>
         </div>
-        {counting ? <StartButton onClick={startTimer}>Pause</StartButton> : <>{((working && workTime != 25) || (!working && workTime != 5)) ? <StartButton onClick={startTimer}>Continue</StartButton> : <StartButton onClick={startTimer}>Start</StartButton>}</>}
-        {counting? <StartButton onClick={reset}>Reset</StartButton> : <></>}
+        {counting ? (
+          <StartButton onClick={startTimer}>Pause</StartButton>
+        ) : (
+          <>
+            {(working && workTime != 25) || (!working && workTime != 5) ? (
+              <StartButton onClick={startTimer}>Continue</StartButton>
+            ) : (
+              <StartButton onClick={startTimer}>Start</StartButton>
+            )}
+          </>
+        )}
+        {counting ? (
+          <StartButton onClick={resetBack}>Reset</StartButton>
+        ) : (
+          <></>
+        )}
       </TimerContainer>
     </WateringContainer>
   );
@@ -59,12 +82,14 @@ const WateringContainer = styled.div`
   position: absolute;
   top: 20%;
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const WateringTitle = styled.h1`
   color: #000;
-  // font-family: Kadwa;
-  font-size: 20px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -88,7 +113,6 @@ const TimerNumber = styled.h1`
   color: #000;
 
   text-align: center;
-  // font-family: Kadwa;
   font-size: 68px;
   font-style: normal;
   font-weight: 400;
@@ -101,7 +125,6 @@ const TimerNumber = styled.h1`
 const TimerWords = styled.h2`
   color: #000;
   text-align: center;
-  // font-family: Kadwa;
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
@@ -122,7 +145,6 @@ const StartButton = styled.button`
 
   color: #000;
 
-  // font-family: Kadwa;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
