@@ -120,6 +120,8 @@ const GrowthContainer = styled.div`
   position: absolute;
   top: 20%;
   width: 300px;
+  overflow: scroll;
+  max-height: 286px;
 
   display: flex;
   flex-direction: column;
@@ -176,7 +178,7 @@ const DeleteImg = styled.img`
   width: 30px;
   height: 30px;
   position: absolute;
-  right: 0;
+  right: 5px;
 
   &:hover {
     cursor: pointer;
