@@ -61,7 +61,7 @@ const WateringSchedule: React.FC = () => {
           <StartButton onClick={startTimer}>Pause</StartButton>
         ) : (
           <>
-            {(working && workTime != 25) || (!working && workTime != 5) ? (
+            {(working && workTime !== 25) || (!working && workTime !== 5) ? (
               <StartButton onClick={startTimer}>Continue</StartButton>
             ) : (
               <StartButton onClick={startTimer}>Start</StartButton>
