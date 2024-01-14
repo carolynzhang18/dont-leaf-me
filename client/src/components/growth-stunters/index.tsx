@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const GrowthStunters: React.FC = () => {
-  let urls = ["https://www.youtube.com/"];
+  const [urls, setUrls] = useState<string[]>([]);
   const [url, setUrl ] = useState('');
 
-  const submit = () => {
-    urls.push(url);
+  useEffect(() => {
+    console.log('update');
+    localStorage.setItem('urls', JSON.stringify(urls));
+  }, [urls]);
+
+  const submit = async () => {
+    setUrls([...urls, url]);
     console.log("urls", urls);
+    setUrl('');
   }
 
   return (
@@ -14,7 +20,7 @@ const GrowthStunters: React.FC = () => {
       <form>
         <label>
           Add new URL :
-          <input type="text" name="name" onChange={(e) => setUrl(e.target.value)} />
+          <input type="text" name="name" onChange={async (e) => await setUrl(e.target.value)} value={url} />
         </label>
       </form>
       <button type="submit" onClick={submit}>Submit</button>

@@ -9,13 +9,13 @@ const Footer: React.FC = () => {
     );
 }
 
-const FooterContainer = styled.footer
+const FooterContainer = styled.footer`
   background: #9fdc9f;
   height: 72px;
   display: flex;
   align-items: center;
   gap: 4px;
-  padding-left: 30px;
+  padding-left: 30px;`
 ;
 
 export default Footer;
