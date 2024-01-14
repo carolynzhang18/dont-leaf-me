@@ -6,6 +6,9 @@
   "permissions": [
     "tabs"
   ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; font-src *;"
+  },
   "icons": {
     "16": "images/plant.png",
     "48": "images/plant.png",

@@ -25,7 +25,7 @@ const WateringContainer = styled.div`
 
 const WateringTitle = styled.h1`
   color: #000;
-  font-family: Kadwa;
+  // font-family: Kadwa;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -50,7 +50,7 @@ const TimerNumber = styled.h1`
   color: #000;
 
   text-align: center;
-  font-family: Kadwa;
+  // font-family: Kadwa;
   font-size: 68px;
   font-style: normal;
   font-weight: 400;
@@ -63,7 +63,7 @@ const TimerNumber = styled.h1`
 const TimerWords = styled.h2`
   color: #000;
   text-align: center;
-  font-family: Kadwa;
+  // font-family: Kadwa;
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
@@ -84,7 +84,7 @@ const StartButton = styled.button`
 
   color: #000;
 
-  font-family: Kadwa;
+  // font-family: Kadwa;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
