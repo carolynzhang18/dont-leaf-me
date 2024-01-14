@@ -16,6 +16,17 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    const urls = JSON.parse(localStorage.getItem('urls'));
+    if (urls) {
+        urls.foreach((url) => {
+            if (req.url == url) {
+                console.log('No!');
+            }
+        });
+    }
+})
+
 app.post("/api/detectFace", (req, res) => {
     const imageSrc = req.body.imageSrc;
     console.log(imageSrc); 

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 const GrowthStunters: React.FC = () => {
-  const [urls, setUrls] = useState<string[]>([]);
+  const [called, setCalled] = useState(0);
   const [url, setUrl ] = useState('');
 
   useEffect(() => {
     console.log('update');
-    localStorage.setItem('urls', JSON.stringify(urls));
-  }, [urls]);
+    if (url != "") {
+      localStorage.setItem(JSON.stringify(url), JSON.stringify(url));
+    }
+    setUrl('');
+  }, [called]);
 
   const submit = async () => {
-    setUrls([...urls, url]);
-    console.log("urls", urls);
-    setUrl('');
+    setCalled(called + 1);
   }
 
   return (
