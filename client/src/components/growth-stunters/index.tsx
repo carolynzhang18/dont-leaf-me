@@ -26,7 +26,6 @@ const GrowthStunters: React.FC = () => {
     }
   }, []);
 
-  console.log(blockedLinks);
 
   return (
     <GrowthContainer>
@@ -52,7 +51,7 @@ const GrowthStunters: React.FC = () => {
                 "blockedLinks",
                 JSON.stringify(saveBlockedLinks)
               );
-              chrome.runtime.sendMessage(window.localStorage, function(response) {});
+              chrome.runtime.sendMessage(JSON.parse(window.localStorage.getItem('blockedLinks')!), function(response) {});
               onClose();
             }}
           >
