@@ -5,7 +5,6 @@ const TimerPage: React.FC = () => {
     return (
         <>
             <WateringSchedule />
-            <h1>Timer Page</h1>
         </>
     );
 }
