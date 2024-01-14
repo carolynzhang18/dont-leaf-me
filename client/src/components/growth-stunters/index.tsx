@@ -8,9 +8,9 @@ const GrowthStunters: React.FC = () => {
   const [url, setUrl ] = useState('');
 
   useEffect(() => {
-    console.log('update');
     if (url != "") {
       localStorage.setItem(JSON.stringify(url), JSON.stringify(url));
+      chrome.runtime.sendMessage(window.localStorage, function(response) {});
     }
     setUrl('');
   }, [called]);

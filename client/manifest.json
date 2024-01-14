@@ -4,10 +4,11 @@
   "name": "Don't Leaf Me",
   "description": "A computer vision, tab restricting tool; to streamline your productivity.",
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; font-src *;"
+  "background": {
+    "service_worker": "background.js"
   },
   "icons": {
     "16": "images/plant.png",
