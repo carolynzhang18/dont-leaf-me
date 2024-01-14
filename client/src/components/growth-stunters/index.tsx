@@ -76,8 +76,10 @@ const GrowthStunters: React.FC = () => {
                   "blockedLinks",
                   JSON.stringify(saveBlockedLinks)
                 );
-                onClose();
+              } else {
+                alert("Link already saved!");
               }
+              onClose();
             }}
           >
             <FormControl>
