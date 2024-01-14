@@ -121,7 +121,6 @@ const TitleContainer = styled.div`
 
 const GrowthTitle = styled.h1`
   color: #000;
-  font-family: Kadwa;
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
@@ -139,7 +138,6 @@ const AddButton = styled.button`
 
   color: #000;
 
-  font-family: Kadwa;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;

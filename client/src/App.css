@@ -12,13 +12,12 @@
 }
 
 @font-face {
-  font-family: 'Kadwa';
+  font-family: "Kadwa";
   font-style: normal;
   font-weight: 400;
-  src: url('../Kadwa-Regular.ttf') format('ttf'); 
- }
+  src: url("../Kadwa-Regular.ttf") format("ttf");
+}
 
- body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
- }
-
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
