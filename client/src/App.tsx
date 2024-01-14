@@ -1,25 +1,35 @@
 import React from "react";
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import "./App.css";
-import styled from "styled-components";
 import Webcam from "react-webcam";
 import Header from "./components/Header";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage";
+import TimerPage from "./pages/TimerPage";
 import GrowthStunters from "./components/growth-stunters";
 import FaceDetector from "./components/FaceDetector";
-import WateringSchedule from "./components/growth-stunters/watering-schedule";
+
 
 const App: React.FC = () => {
   return (
-    <>
+    <MemoryRouter>
       <Header />
-      {/* <FaceDetector /> */}
-
-      {/* <GrowthStunters /> */}
-      <WateringSchedule />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/timer" element={<TimerPage />} />
+      </Routes>
       <Footer />
-      {/* <Webcam width={150} /> */}
-    </>
+    </MemoryRouter>
   );
 };
 
 export default App;
+
+
+{/* <Header /> */}
+      {/* <FaceDetector /> */}
+
+      {/* <GrowthStunters /> */}
+      {/* <WateringSchedule />
+      <Footer /> */}
+      {/* <Webcam width={150} /> */}
