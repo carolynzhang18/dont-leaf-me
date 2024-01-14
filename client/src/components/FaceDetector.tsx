@@ -22,13 +22,14 @@ const FaceDetector = () => {
     return (
         <>
             <p>Num faces: {numFaces}</p>
-            <button onClick={capture}>Get faces!</button><br/>
+            <button onClick={capture}>Check faces</button><br/>
             <Webcam
                 audio={false}
+                muted={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 width={600}
-                style={{visibility: "hidden"}}
+                style={{position: "absolute", display:"block", right:"100%"}}
             />
         </>
     );

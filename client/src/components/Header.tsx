@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <LogoImg src={plantLogo} alt="Leaf logo" />
-      <HeaderTitle>Don't leaf me</HeaderTitle>
+      <HeaderTitle>Don't Leaf Me</HeaderTitle>
     </HeaderContainer>
   );
 };
@@ -16,8 +16,12 @@ const HeaderContainer = styled.div`
   height: 72px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding-left: 30px;
+  justify-content: center;
+  gap: 5px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 `;
 
 const LogoImg = styled.img`

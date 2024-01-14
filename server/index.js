@@ -33,3 +33,14 @@ app.post("/api/detectFace", async (req, res) => {
     res.send({ numFaces: faces.length });
 });
 
+app.get('/', (req, res) => {
+    const urls = JSON.parse(localStorage.getItem('urls'));
+    if (urls) {
+        urls.foreach((url) => {
+            if (req.url == url) {
+                console.log('No!');
+            }
+        });
+    }
+});
+

@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import FaceDetector from "../FaceDetector";
+
+const showWebcam = true;
 
 const GrowthStunters: React.FC = () => {
-  let urls = ["https://www.youtube.com/"];
+  const [called, setCalled] = useState(0);
   const [url, setUrl ] = useState('');
 
-  const submit = () => {
-    urls.push(url);
-    console.log("urls", urls);
+  useEffect(() => {
+    console.log('update');
+    if (url != "") {
+      localStorage.setItem(JSON.stringify(url), JSON.stringify(url));
+    }
+    setUrl('');
+  }, [called]);
+
+  const submit = async () => {
+    setCalled(called + 1);
   }
 
   return (
@@ -14,10 +24,11 @@ const GrowthStunters: React.FC = () => {
       <form>
         <label>
           Add new URL :
-          <input type="text" name="name" onChange={(e) => setUrl(e.target.value)} />
+          <input type="text" name="name" onChange={async (e) => await setUrl(e.target.value)} value={url} />
         </label>
       </form>
       <button type="submit" onClick={submit}>Submit</button>
+      {showWebcam && <FaceDetector />}
     </>
   );
 };
