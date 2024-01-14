@@ -11,7 +11,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import styled from "styled-components";
 import deleteImg from "../../../public/images/delete.svg";
 
@@ -76,6 +76,10 @@ const GrowthStunters: React.FC = () => {
                   "blockedLinks",
                   JSON.stringify(saveBlockedLinks)
                 );
+                chrome.runtime.sendMessage(
+                  JSON.parse(window.localStorage.getItem("blockedLinks")!),
+                  function (response) {}
+                );
               } else {
                 alert("Link already saved!");
               }
@@ -86,7 +90,7 @@ const GrowthStunters: React.FC = () => {
               <ModalBody>
                 <FormLabel>Enter a link here</FormLabel>
                 <Input
-                  onChange={(e) => setValue(e.target.value)}
+                  onChange={(e:ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
                   placeholder="https://youtube.com"
                   type="url"
                   required
