@@ -15,12 +15,11 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import styled from "styled-components";
 import deleteImg from "../../../public/images/delete.svg";
 
-
 const GrowthStunters: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [value, setValue] = useState<string>("");
   const [blockedLinks, setBlockedLinks] = useState<string[]>([]);
-  
+
   useEffect(() => {
     const storedBlockedLinksString = localStorage.getItem("blockedLinks");
     if (storedBlockedLinksString) {
@@ -30,10 +29,13 @@ const GrowthStunters: React.FC = () => {
   }, []);
 
   useEffect(() => {
-      const blockedLinks = window.localStorage.getItem("blockedLinks");
-      if (blockedLinks) {
-        chrome.runtime.sendMessage(JSON.parse(blockedLinks), function(response) {});
-      }
+    const blockedLinks = window.localStorage.getItem("blockedLinks");
+    if (blockedLinks) {
+      chrome.runtime.sendMessage(
+        JSON.parse(blockedLinks),
+        function (response) {}
+      );
+    }
   }, [blockedLinks]);
 
   return (
@@ -99,8 +101,10 @@ const GrowthStunters: React.FC = () => {
               <ModalBody>
                 <FormLabel>Enter a link here</FormLabel>
                 <Input
-                  onChange={(e:ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
-                  placeholder="https://youtube.com"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setValue(e.target.value)
+                  }
+                  placeholder="https://www.youtube.com"
                   type="url"
                   required
                 />
