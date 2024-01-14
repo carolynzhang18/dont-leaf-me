@@ -37,6 +37,15 @@ const WateringSchedule: React.FC = () => {
       setWorkTime(25);
       setWorking(true);
     }
+  };
+
+  const resetBack = () => {
+    // resetting the time it currently had
+    if (working) {
+      setWorkTime(25);
+    } else {
+      setWorkTime(5);
+    }
     setCounting(false);
   };
 
@@ -59,7 +68,11 @@ const WateringSchedule: React.FC = () => {
             )}
           </>
         )}
-        {counting ? <StartButton onClick={reset}>Reset</StartButton> : <></>}
+        {counting ? (
+          <StartButton onClick={resetBack}>Reset</StartButton>
+        ) : (
+          <></>
+        )}
       </TimerContainer>
     </WateringContainer>
   );
