@@ -16,8 +16,11 @@ const HeaderContainer = styled.div`
   height: 72px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding-left: 30px;
+  justify-content: center;
+  gap: 5px;
+  position: absolute;
+  width: 95.5%;
+  top: 0;
 `;
 
 const LogoImg = styled.img`

@@ -16,9 +16,9 @@ const App: React.FC = () => {
       <Header />
       {webcam && <FaceDetector />}
 
-      <GrowthStunters />
+      {/* <GrowthStunters /> */}
       <WateringSchedule />
-      <Footer />
+      {/* <Footer /> */}
       {/* <Webcam width={150} /> */}
     </>
   );
