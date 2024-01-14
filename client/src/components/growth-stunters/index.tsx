@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import deleteImg from "../../../public/images/delete.svg";
 
 const GrowthStunters: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,8 +27,6 @@ const GrowthStunters: React.FC = () => {
     }
   }, []);
 
-  console.log(blockedLinks);
-
   return (
     <GrowthContainer>
       <TitleContainer>
@@ -36,7 +35,31 @@ const GrowthStunters: React.FC = () => {
       </TitleContainer>
       <GrowthBody>
         {blockedLinks &&
-          blockedLinks.map((link: string) => <LinkTab>{link}</LinkTab>)}
+          blockedLinks.map((link: string, i: number) => (
+            <BlockedLinksContainer>
+              <LinkTab>{link.substring(0, 30)}</LinkTab>
+              <DeleteImg
+                data-key={i}
+                src={deleteImg}
+                alt="Delete icon"
+                onClick={(e) => {
+                  const index = e.currentTarget.getAttribute("data-key");
+                  if (index) {
+                    const intIndex = parseInt(index);
+                    const saveBlockedLinks = [
+                      ...blockedLinks.slice(0, intIndex),
+                      ...blockedLinks.slice(intIndex + 1),
+                    ];
+                    setBlockedLinks(saveBlockedLinks);
+                    localStorage.setItem(
+                      "blockedLinks",
+                      JSON.stringify(saveBlockedLinks)
+                    );
+                  }
+                }}
+              />
+            </BlockedLinksContainer>
+          ))}
       </GrowthBody>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -46,13 +69,15 @@ const GrowthStunters: React.FC = () => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              const saveBlockedLinks = [...blockedLinks, value];
-              setBlockedLinks(saveBlockedLinks);
-              localStorage.setItem(
-                "blockedLinks",
-                JSON.stringify(saveBlockedLinks)
-              );
-              onClose();
+              if (!blockedLinks.includes(value)) {
+                const saveBlockedLinks = [...blockedLinks, value];
+                setBlockedLinks(saveBlockedLinks);
+                localStorage.setItem(
+                  "blockedLinks",
+                  JSON.stringify(saveBlockedLinks)
+                );
+                onClose();
+              }
             }}
           >
             <FormControl>
@@ -80,7 +105,10 @@ const GrowthContainer = styled.div`
   position: absolute;
   top: 20%;
   width: 300px;
-  box-sh
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const TitleContainer = styled.div`
@@ -123,12 +151,35 @@ const AddButton = styled.button`
 
 const SubmitButton = styled(AddButton)``;
 
-const GrowthBody = styled.div``;
+const GrowthBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
-const LinkTab = styled.div`
+const LinkTab = styled.div``;
+
+const DeleteImg = styled.img`
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const BlockedLinksContainer = styled.div`
   border-radius: 2px;
-  background: #9fdc9f;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+  background: #9fdc9f;
+  position: relative;
 `;
 
 export default GrowthStunters;

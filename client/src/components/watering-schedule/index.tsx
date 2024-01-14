@@ -59,7 +59,6 @@ const WateringContainer = styled.div`
   position: absolute;
   top: 20%;
   width: 300px;
-  box-sh
 `;
 
 const WateringTitle = styled.h1`
