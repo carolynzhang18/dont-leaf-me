@@ -1,32 +1,36 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import Webcam from "react-webcam";
 import axios from "axios";
 
 
 const FaceDetector = () => {
     const webcamRef = useRef(null);
+    const [numFaces, setNumFaces] = useState(0);
 
     const capture = useCallback(async () => {
         if (webcamRef.current) {
             // @ts-ignore: Object is possibly 'null'.
             const imageSrc = webcamRef.current.getScreenshot();
-            console.log(imageSrc);
-            const data = await axios.post(
+            const response = await axios.post(
                 "http://localhost:5050/api/detectFace", 
                 { imageSrc: imageSrc },
                 {});
-            console.log("DATA", data);
+            setNumFaces(response.data.numFaces);
         }
     }, [webcamRef]);
 
     return (
         <>
-        <Webcam
-            audio={false}
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-        />
-        <button onClick={capture}>Capture photo</button>
+            <p>Num faces: {numFaces}</p>
+            <button onClick={capture}>Check faces</button><br/>
+            <Webcam
+                audio={false}
+                muted={false}
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                width={600}
+                style={{position: "absolute", display:"block", right:"100%"}}
+            />
         </>
     );
 }

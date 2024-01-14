@@ -5,10 +5,7 @@ import Webcam from "react-webcam";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import GrowthStunters from "./components/growth-stunters";
-import FaceDetector from "./components/FaceDetector";
 import WateringSchedule from "./components/watering-schedule";
-
-const webcam = true;
 
 const App: React.FC = () => {
   return (

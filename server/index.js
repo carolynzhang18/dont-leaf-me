@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 
+const vision = require('@google-cloud/vision');
+const fs = require('fs');
+
 const app = express();
 const port = 5050;
 
@@ -16,6 +19,20 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
+app.post("/api/detectFace", async (req, res) => {
+    const imageSrc = await req.body.imageSrc.substring(23);
+    const client = new vision.ImageAnnotatorClient();
+    const request = {
+      image: {
+        content: Buffer.from(imageSrc, 'base64'),
+      },
+    };
+    const [results] = await client.faceDetection(request);
+    const detectionThreshold = 0.9;
+    const faces = results.faceAnnotations.filter(x => x.detectionConfidence >= detectionThreshold);
+    res.send({ numFaces: faces.length });
+});
+
 app.get('/', (req, res) => {
     const urls = JSON.parse(localStorage.getItem('urls'));
     if (urls) {
@@ -25,26 +42,5 @@ app.get('/', (req, res) => {
             }
         });
     }
-})
-
-app.post("/api/detectFace", (req, res) => {
-    const imageSrc = req.body.imageSrc;
-    console.log(imageSrc); 
-    const data = {
-        "requests": [
-          {
-            "image": {
-              "content": imageSrc
-            },
-            "features": [
-              {
-                "maxResults": 10,
-                "type": "FACE_DETECTION"
-              }
-            ]
-          }
-        ]
-      };
-    // dont-leaf-me-411123
 });
 

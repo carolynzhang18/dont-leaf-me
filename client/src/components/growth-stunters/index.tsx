@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import FaceDetector from "../FaceDetector";
+
+const faceDetection = false;
 
 const GrowthStunters: React.FC = () => {
   const [called, setCalled] = useState(0);
@@ -25,6 +28,7 @@ const GrowthStunters: React.FC = () => {
         </label>
       </form>
       <button type="submit" onClick={submit}>Submit</button>
+      {faceDetection && <FaceDetector />}
     </>
   );
 };
