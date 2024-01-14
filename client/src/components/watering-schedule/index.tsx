@@ -58,22 +58,22 @@ const WateringSchedule: React.FC = () => {
           <TimerWords>minutes left</TimerWords>
         </div>
         <FlexButton>
-        {counting ? (
-          <StartButton onClick={startTimer}>Pause</StartButton>
-        ) : (
-          <>
-            {(working && workTime !== 25) || (!working && workTime !== 5) ? (
-              <StartButton onClick={startTimer}>Continue</StartButton>
-            ) : (
-              <StartButton onClick={startTimer}>Start</StartButton>
-            )}
-          </>
-        )}
-        {counting ? (
-          <StartButton onClick={resetBack}>Reset</StartButton>
-        ) : (
-          <></>
-        )}
+          {counting ? (
+            <StartButton onClick={startTimer}>Pause</StartButton>
+          ) : (
+            <>
+              {(working && workTime !== 25) || (!working && workTime !== 5) ? (
+                <StartButton onClick={startTimer}>Continue</StartButton>
+              ) : (
+                <StartButton onClick={startTimer}>Start</StartButton>
+              )}
+            </>
+          )}
+          {counting ? (
+            <StartButton onClick={resetBack}>Reset</StartButton>
+          ) : (
+            <></>
+          )}
         </FlexButton>
       </TimerContainer>
     </WateringContainer>
@@ -156,6 +156,11 @@ const StartButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  &:hover {
+    cursor: pointer;
+    background: #88bf88;
+  }
 `;
 
 export default WateringSchedule;

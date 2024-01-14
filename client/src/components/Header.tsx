@@ -32,6 +32,8 @@ const LogoImg = styled.img`
 const HeaderTitle = styled.h1`
   color: #000;
 
+  font-family: "Kadwa";
+
   font-size: 36px;
   font-weight: 800;
   line-height: normal;
