@@ -25,15 +25,16 @@ const HeaderContainer = styled.div`
 `;
 
 const LogoImg = styled.img`
-  width: 52px;
+  width: 40px;
   height: 40px;
+  margin-right: 10px;
 `;
 
 const HeaderTitle = styled.h1`
   color: #000;
 
   font-size: 36px;
-  font-weight: 800;
+  font-weight: 600;
   line-height: normal;
 `;
 
