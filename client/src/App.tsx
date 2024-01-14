@@ -21,21 +21,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-{
-  /* <Header /> */
-}
-{
-  /* <FaceDetector /> */
-}
-
-{
-  /* <GrowthStunters /> */
-}
-{
-  /* <WateringSchedule />
-      <Footer /> */
-}
-{
-  /* <Webcam width={150} /> */
-}
