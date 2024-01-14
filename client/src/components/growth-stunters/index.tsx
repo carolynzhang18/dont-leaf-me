@@ -42,12 +42,13 @@ const GrowthStunters: React.FC = () => {
     <GrowthContainer>
       <TitleContainer>
         <GrowthTitle>Growth Stunters</GrowthTitle>
-        <AddButton onClick={onOpen}>Add</AddButton>
+        <AddButton onClick={onOpen} 
+          style={{backgroundColor: "rgb(159, 220, 159)", width: "40px", height: "40px", borderRadius: "25px", marginLeft:"52px", paddingBottom: "3px"}}>+</AddButton>
       </TitleContainer>
-      <GrowthBody>
+      <GrowthBody style={{marginTop: "10px", paddingBottom: "10px"}}>
         {blockedLinks &&
           blockedLinks.map((link: string, i: number) => (
-            <BlockedLinksContainer>
+            <BlockedLinksContainer style={{height: "40px", borderRadius: "10px", fontSize: "16px", marginBottom: "3px"}}>
               <LinkTab>{link.substring(0, 30)}</LinkTab>
               <DeleteImg
                 data-key={i}
@@ -74,7 +75,7 @@ const GrowthStunters: React.FC = () => {
       </GrowthBody>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent style={{width: "80%", marginTop: "100px"}}>
           <ModalHeader>Block a site</ModalHeader>
           <ModalCloseButton />
           <form
@@ -191,7 +192,7 @@ const DeleteImg = styled.img`
 
 const BlockedLinksContainer = styled.div`
   border-radius: 2px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
   display: flex;
   align-items: center;

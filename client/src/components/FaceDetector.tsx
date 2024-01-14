@@ -38,9 +38,9 @@ const FaceDetector = () => {
 
   return (
     <>
-      <p>Num faces: {numFaces}</p>
+      {/* <p>Num faces: {numFaces}</p>
       <button onClick={checkFace}>Check faces</button>
-      <br />
+      <br /> */}
       <Webcam
         audio={false}
         muted={false}

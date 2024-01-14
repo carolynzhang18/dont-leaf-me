@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <LogoImg src={plantLogo} alt="Leaf logo" />
-      <HeaderTitle>Don't Leaf Me</HeaderTitle>
+      <HeaderTitle>Don't Leaf Me!</HeaderTitle>
     </HeaderContainer>
   );
 };
