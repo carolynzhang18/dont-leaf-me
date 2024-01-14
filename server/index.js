@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 app.post("/api/detectFace", async (req, res) => {
+    console.log("hit");
     const imageSrc = await req.body.imageSrc.substring(23);
     const client = new vision.ImageAnnotatorClient();
     const request = {
