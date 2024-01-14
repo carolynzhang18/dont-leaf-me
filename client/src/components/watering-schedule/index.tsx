@@ -1,16 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const WateringSchedule: React.FC = () => {
+  const [workTime, setWorkTime] = useState(25); // in minutes
+  const [working, setWorking] = useState(true); // true if working
+  const [counting, setCounting] = useState(false); // true if in countdown
+
+  const startTimer = () => {
+    if (counting) {
+      setCounting(false);
+    } else {
+      setCounting(true);
+    }
+  }
+
+  useEffect(() => {
+    if (counting) {
+      const timer = setInterval(() => {
+        setWorkTime(workTime - 1);
+        console.log(workTime);
+      }, 1000);
+      if (workTime <= 0 || !counting) {
+        clearInterval(timer);
+        reset();
+      }
+      return () => clearInterval(timer);
+    }
+  }, [workTime, counting]);
+
+  const reset = () => {
+    // switching from working to break
+    if (working) {
+      setWorkTime(5);
+      setWorking(false);
+    } else {
+      setWorkTime(25);
+      setWorking(true);
+    }
+    setCounting(false);
+  }
+
   return (
     <WateringContainer>
       <WateringTitle>Watering Schedule</WateringTitle>
       <TimerContainer>
         <div>
-          <TimerNumber>25</TimerNumber>
+          {<TimerNumber>{workTime}</TimerNumber>}
           <TimerWords>minutes left</TimerWords>
         </div>
-        <StartButton>Start</StartButton>
+        {counting ? <StartButton onClick={startTimer}>Pause</StartButton> : <>{((working && workTime != 25) || (!working && workTime != 5)) ? <StartButton onClick={startTimer}>Continue</StartButton> : <StartButton onClick={startTimer}>Start</StartButton>}</>}
+        {counting? <StartButton onClick={reset}>Reset</StartButton> : <></>}
       </TimerContainer>
     </WateringContainer>
   );
@@ -20,7 +59,6 @@ const WateringContainer = styled.div`
   position: absolute;
   top: 20%;
   width: 300px;
-  box-sh
 `;
 
 const WateringTitle = styled.h1`

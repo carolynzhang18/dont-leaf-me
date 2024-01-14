@@ -33,6 +33,13 @@ const FooterContainer = styled.div`
 const LogoImg = styled.img`
   width: 48px;
   height: 48px;
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
 `;
 
 export default Footer;
