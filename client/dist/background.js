@@ -8,7 +8,7 @@ const checkUrlAgainstLocalStorage = async (blockedSites, changeInfoUrl) => {
         console.log("ALERT");
         chrome.windows.create({
           url: "./js/danger.html", // The URL to open in the new window
-          type: "popup", // 'popup' or 'normal'
+          type: "normal", // 'popup' or 'normal'
           width: 800, // Width of the new window
           height: 600, // Height of the new window
           left: 100, // X-coordinate of the new window's top-left corner
