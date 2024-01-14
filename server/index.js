@@ -32,15 +32,3 @@ app.post("/api/detectFace", async (req, res) => {
     const faces = results.faceAnnotations.filter(x => x.detectionConfidence >= detectionThreshold);
     res.send({ numFaces: faces.length });
 });
-
-app.get('/', (req, res) => {
-    const urls = JSON.parse(localStorage.getItem('urls'));
-    if (urls) {
-        urls.foreach((url) => {
-            if (req.url == url) {
-                console.log('No!');
-            }
-        });
-    }
-});
-
