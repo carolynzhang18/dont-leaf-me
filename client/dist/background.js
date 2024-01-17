@@ -1,5 +1,4 @@
 let blocked;
-let prev = "";
 
 // Check if current URL is in local storage
 const checkUrlAgainstLocalStorage = async (blockedSites, changeInfoUrl) => {
@@ -25,9 +24,7 @@ const checkUrlAgainstLocalStorage = async (blockedSites, changeInfoUrl) => {
 
 //Check if the current url is in the local storage on url change
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-  if (changeInfo.url === prev) return;
-  prev = changeInfo.url;
-  setTimeout(await checkUrlAgainstLocalStorage(blocked, changeInfo.url), 2000);
+  checkUrlAgainstLocalStorage(blocked, changeInfo.url);
 });
 
 chrome.runtime.onMessage.addListener(function (info) {
